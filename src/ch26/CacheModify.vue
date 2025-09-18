@@ -18,8 +18,8 @@
 // `useQuery`: 서버로부터 데이터를 **가져오는** GraphQL 쿼리를 실행합니다. (데이터 읽기)
 // `useMutation`: 서버의 데이터를 **변경하는** (생성, 수정, 삭제) GraphQL 뮤테이션을 실행합니다. (데이터 쓰기)
 import { useQuery, useMutation } from '@vue/apollo-composable'
-// GraphQL 쿼리/뮤테이션 문자열을 JavaScript 객체로 파싱하는 유틸리티 함수입니다.
-import { gql } from 'graphql-tag'
+// Vue.js와 Apollo를 함께 사용한다면 **@apollo/client/core **에서 gql을 import하는 게 좋습니다.
+import { gql } from '@apollo/client/core';
 // Vue의 반응형 시스템을 사용하기 위한 훅들입니다.
 // `watch`: 특정 반응형 데이터의 변화를 감지하고 콜백 함수를 실행합니다.
 // `ref`: 단일 값을 반응형으로 만들어 값의 변경을 추적할 수 있게 합니다.
@@ -66,8 +66,7 @@ const userId = 4
 // `ref`를 사용하여 Vue가 이 배열의 변경을 감지하고 UI를 자동으로 업데이트하도록 합니다.
 // 초기값은 빈 배열이며, 타입스크립트 타입을 명확히 지정해 안정성을 높였습니다.
 const posts = ref<{ id: number; title: string; author: { id: number; nickname: string } }[]>([])
-
-
+//const posts = ref<any[]>([]) 이렇게 해도 돼
 // ----------------------
 // Query 실행 및 결과 처리
 // ----------------------

@@ -19,7 +19,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useMutation } from '@vue/apollo-composable'
-import { gql } from 'graphql-tag'
+// Vue.js와 Apollo를 함께 사용한다면 **@apollo/client/core **에서 gql을 import하는 게 좋습니다.
+import { gql } from '@apollo/client/core';
 
 // 입력 상태 선언
 const title = ref('');

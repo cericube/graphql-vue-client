@@ -40,7 +40,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useQuery } from '@vue/apollo-composable'  // Apollo Client의 useQuery 훅
-import { gql } from 'graphql-tag'                  // GraphQL 쿼리 정의용 gql 태그
+// Vue.js와 Apollo를 함께 사용한다면 **@apollo/client/core **에서 gql을 import하는 게 좋습니다.
+import { gql } from '@apollo/client/core';
 
 ////////////////////////////////////////////////////////////////
 // GraphQL 쿼리 정의: 게시글 목록 조회용

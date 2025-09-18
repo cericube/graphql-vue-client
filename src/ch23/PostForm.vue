@@ -18,7 +18,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { gql } from 'graphql-tag'
+// Vue.js와 Apollo를 함께 사용한다면 **@apollo/client/core **에서 gql을 import하는 게 좋습니다.
+import { gql } from '@apollo/client/core';
 import { useMutation } from '@vue/apollo-composable'
 
 const title = ref('')
