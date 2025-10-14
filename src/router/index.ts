@@ -9,6 +9,7 @@ import PostCreateForm from "@/ch24/PostCreateForm.vue";
 import PostDetailWithComments from "@/ch25/PostDetailWithComments.vue";
 import CacheModify from "@/ch26/CacheModify.vue";
 import LikeUpdateExample from "@/ch27/LikeUpdateExample.vue";
+import PostListView from "@/ch28/PostListView.vue";
 
 // 라우트 목록 정의
 // - 각 라우트 객체는 URL 경로(path), 라우트 이름(name), 연결된 컴포넌트(component)를 가진다.
@@ -47,6 +48,11 @@ const routes = [
     path: "/ch27", // 접속 경로 (http://localhost:5173/ch27)
     name: "ch27", // 라우트 이름 (네비게이션, 프로그래밍 라우팅 시 사용)
     component: LikeUpdateExample, // 매칭되는 Vue 컴포넌트
+  },
+  {
+    path: "/ch28", // 접속 경로 (http://localhost:5173/ch28)
+    name: "ch28", // 라우트 이름 (네비게이션, 프로그래밍 라우팅 시 사용)
+    component: PostListView, // 매칭되는 Vue 컴포넌트
   },
 ];
 
