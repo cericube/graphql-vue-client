@@ -3,11 +3,13 @@
 // - Apollo Client: GraphQL 서버와 통신하고, 쿼리 결과를 캐싱/관리하는 핵심 라이브러리
 // - InMemoryCache: Apollo의 기본 캐시 구현체. 동일한 쿼리 결과를 메모리에 저장하여 네트워크 요청 최소화
 // - createHttpLink: GraphQL 서버와의 HTTP 연결을 설정하는 함수
+// - makeVar: Reactive Variable을 생성하는 함수. 로컬 상태 관리를 위해 사용
 
 import {
   ApolloClient,
   InMemoryCache,
   createHttpLink,
+  makeVar,
 } from "@apollo/client/core";
 
 //브라우저 콘솔에 출력
@@ -25,6 +27,9 @@ const httpLink = createHttpLink({
   uri: import.meta.env.VITE_GRAPHQL_URI, // .env에 정의된 GraphQL 서버 주소
 });
 
+// ch30: 로그인 상태를 나타내는 ReactiveVar 생성
+export const isLoggedInVar = makeVar<boolean>(false);
+
 // Apollo Client 인스턴스 생성
 // - link: GraphQL 요청을 보낼 네트워크 레이어 (여기서는 httpLink 사용)
 // - cache: 쿼리 결과를 저장하고 재사용하는 캐시 전략 (기본 InMemoryCache)
@@ -33,6 +38,21 @@ const httpLink = createHttpLink({
 // - 필요 시 에러 핸들링, Apollo Link 체이닝, 인증 토큰 주입 등 확장이 가능
 export const apolloClient = new ApolloClient({
   link: httpLink,
-  cache: new InMemoryCache(),
-
+  cache: new InMemoryCache({
+    // ch30: 캐시 정책 설정 (예: 특정 필드에 대한 맞춤형 캐싱 전략)
+    typePolicies: {
+      Query: {
+        fields: {
+          // 예시: isLoggedIn 필드에 대해 ReactiveVar와 연동
+          isLoggedIn: {
+            // Query 타입의 isLoggedIn 필드 정의
+            read() {
+              // 캐시에서 isLoggedIn 필드를 읽을 때 호출
+              return isLoggedInVar(); // ReactiveVar의 현재 값을 반환
+            },
+          },
+        },
+      },
+    },
+  }),
 });

@@ -11,6 +11,7 @@ import CacheModify from "@/ch26/CacheModify.vue";
 import LikeUpdateExample from "@/ch27/LikeUpdateExample.vue";
 import PostListView from "@/ch28/PostListView.vue";
 import FetchPolicyPostListView from "@/ch29/FetchPolicyPostListView.vue";
+import LoginToggle from "@/ch30/LoginToggle.vue";
 
 // 라우트 목록 정의
 // - 각 라우트 객체는 URL 경로(path), 라우트 이름(name), 연결된 컴포넌트(component)를 가진다.
@@ -56,9 +57,14 @@ const routes = [
     component: PostListView, // 매칭되는 Vue 컴포넌트
   },
   {
-    path: "/ch29", // 접속 경로 (http://localhost:5173/ch28)
+    path: "/ch29", // 접속 경로 (http://localhost:5173/ch29)
     name: "ch29", // 라우트 이름 (네비게이션, 프로그래밍 라우팅 시 사용)
     component: FetchPolicyPostListView, // 매칭되는 Vue 컴포넌트
+  },
+  {
+    path: "/ch30", // 접속 경로 (http://localhost:5173/ch30)
+    name: "ch30", // 라우트 이름 (네비게이션, 프로그래밍 라우팅 시 사용)
+    component: LoginToggle, // 매칭되는 Vue 컴포넌트
   },
 ];
 
